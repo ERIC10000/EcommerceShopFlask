@@ -36,7 +36,7 @@ def products():
     if request.method == 'POST':
         search = request.form['search']
         cursor_search = connection.cursor()
-        sql = 'SELECT * FROM products WHERE product_name LIKE "%{}%" ORDER BY RAND() LIMIT 6'.format(search)
+        sql = 'SELECT * FROM products  medicines WHERE product_name LIKE "%{}%" ORDER BY RAND() LIMIT 6'.format(search)
         cursor_search.execute(sql)
 
         data = cursor_search.fetchall()
@@ -88,7 +88,7 @@ def login():
             row = cursor.fetchone()
             session['key'] = row[1]  # user_name
             session['email'] = row[2]  # Email
-            return redirect('/')
+            return redirect('/cart')
         else:
             return render_template('login_signup.html', error="Something Wrong with your Credentials")
 
@@ -171,7 +171,7 @@ def mpesa():
             "Password": "{}".format(password),
             "Timestamp": "{}".format(timestamp),
             "TransactionType": "CustomerPayBillOnline",
-            "Amount": amount,  # use 1 when testing
+            "Amount":amount,  # use 1 when testing
             "PartyA": phone,  # change to your number
             "PartyB": "174379",
             "PhoneNumber": phone,
@@ -259,6 +259,7 @@ def add_product_to_cart():
         # add total quantity and total price to a session
         session['all_total_quantity'] = all_total_quantity
         session['all_total_price'] = all_total_price
+        print(int(session['all_total_price']))
         return redirect(url_for('.cart'))
     else:
         return 'Error while adding item to cart'
@@ -266,7 +267,8 @@ def add_product_to_cart():
 
 @app.route('/cart')
 def cart():
-    return render_template('cart.html')
+        return render_template('cart.html')
+
 
 
 @app.route('/customer_checkout')

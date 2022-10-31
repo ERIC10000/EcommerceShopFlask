@@ -17,21 +17,20 @@
 
 {% include 'nav.html'%}
 <!--<h2 class="text-white text-center mt-2">Check Your Product  {{session['key']}}</h2>-->
- <div class="container card shadow bg-secondary mt-5">
+ <div class="container card shadow bg-secondary mt-5 mb-5">
 
      <section class="row">
-         <div class="col-6  p-5">
-              <h4 class="text-center">{{item_data[6]}}</h4>
+         <div class="col-6  p-5 text-center">
+              <h4 style="background-color:white; padding:20px; font-size:25px; margin-left:20px; margin-right:20px; border-radius:10px;" class="text-primary">{{item_data[6]}}</h4>
               <img src="../static/images/{{item_data[7]}}" alt="" style="border-radius:25px; width:300px; height:300px;" class="img-thumbnail">
 
 
          </div>
 
 
-          <div class="col-6">
+          <div class="col-6 mb-2">
               <div class="card shadow mt-5 text-center p-2">
                   <h4>{{item_data[1]}}</h4>
-                  <h3>Price : {{item_data[3]}} KES</h3>
                   <h3>Discount : {{item_data[4]}} KES</h3>
 
                   <h5>Color : {{item_data[8]}}</h5>
@@ -44,8 +43,8 @@
 
                             <form action="/add" method="post" class="form-control col-sm-1" ><br><br><br>   <p class="text-muted">Enter Quantity</p><br>
                                  <input type="hidden" name="code" value="{{item_data[0]}}"/>
-                                 <input type="number" name="quantity" placeholder="Quantity"  required><br><br>
-                                <h5 class="text-warning">Price :&nbspKSH &nbsp{{item_data[3]}}</h5><br>
+                                 <input type="number" name="quantity" placeholder="Quantity" style="border-radius:10px;" class="form-control p-2"required><br><br>
+                                <h5 class="text-primary">Price :&nbspKSH &nbsp{{item_data[3]}} KES</h5><br>
                                  <button type="submit" class="btn btn-danger">ADD TO CART</button>
                                 <br><br>
 
